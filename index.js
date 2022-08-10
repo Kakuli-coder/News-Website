@@ -5,10 +5,10 @@ const xhr = new XMLHttpRequest();
 
 // Open the object
 // Initialise the news api parameters
-let source = "bbc-news";
-let apiKey = "619e026173994d50be4269ea99791c89";
+let category = "india_english";
+let apiKey = "hE1852wFLXQVb2wsyDpFf3H2fToICR";
 // AJAX GET request
-xhr.open('GET', `https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${apiKey}`, true);
+xhr.open('GET', `https://newsapi.in/newsapi/news.php?key=${apiKey}&category=${category}`, true);
 
 // What to de when response is ready
 xhr.onload = function () {
@@ -16,7 +16,8 @@ xhr.onload = function () {
         let object = JSON.parse(this.responseText);
         // console.log(object);
 
-        let obj = Object.values(object)[2];
+        let obj = Object.values(object)[0];
+        obj = obj.slice(0, 20);
         // console.log(obj);
 
         let newsAccordion = document.querySelector("#newsAccordion");
@@ -31,7 +32,7 @@ xhr.onload = function () {
                     </h2>
                     <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#newsAccordion">
                         <div class="accordion-body">
-                            <strong>${key.description}</strong> ${key.content} <a href="${key.url}" target="_blank">Read more</a>
+                            ${key.description} <a href="${key.url}" target="_blank">Read more</a>
                         </div>
                     </div>
                 </div>
