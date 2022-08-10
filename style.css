@@ -1,3 +1,8 @@
 body {
     background-color: rgb(247, 245, 245);
 }
+
+.scrollBar {
+    height: 640px;
+    overflow: auto;
+}
